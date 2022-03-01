@@ -1,0 +1,38 @@
+{
+  "name": "dima-tool-cli",
+  "version": "1.0.0",
+  "description": "工具箱",
+  "repository": "git@github.com:dimaUpp/dima-toolbox.git",
+  "author": "dimaUpp <564074944@qq.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "tsc -w",
+    "release": "tsc && lerna publish",
+    "lint-staged": "lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.17",
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "husky": "^4.3.6",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3"
+  }
+}

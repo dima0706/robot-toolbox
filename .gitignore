@@ -1,0 +1,8 @@
+node_modules
+**/*.js
+**/*.js.map
+yarn-error.log
+.history
+.vscode
+lerna-debug.log
+.DS_Store
