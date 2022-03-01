@@ -1,0 +1,12 @@
+{
+  "name": "@dima-toolbox/cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "bin": {
+    "dima-toolbox": "./index.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "minimist": "^1.2.5"
+  }
+}
