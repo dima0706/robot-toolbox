@@ -1,0 +1,11 @@
+{
+  "name": "@dima-toolbox/mp-upload",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "os": "^0.1.2",
+    "shelljs": "^0.8.5"
+  }
+}
