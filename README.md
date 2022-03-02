@@ -1,6 +1,6 @@
 # dima-tool-cli
 
 ### TODO
-- [ ] mp-upload
+- [x] mp-upload
 - [ ] oss-upload
 - [ ] app-creater
