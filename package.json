@@ -1,8 +1,8 @@
 {
-  "name": "dima-toolbox",
+  "name": "robot-toolbox",
   "version": "1.0.0",
   "description": "工具箱",
-  "repository": "git@github.com:dimaUpp/dima-toolbox.git",
+  "repository": "git@github.com:dimaUpp/robot-toolbox.git",
   "author": "dimaUpp <564074944@qq.com>",
   "license": "MIT",
   "private": true,

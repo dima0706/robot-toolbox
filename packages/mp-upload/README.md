@@ -1,8 +1,8 @@
 # mp-upload
 
 - 安装
-  1. yarn [global] add @dima-toolbox/cli
-  2. yarn [global] add @dima-toolbox/mp-upload
+  1. yarn [global] add @robot-toolbox/cli
+  2. yarn [global] add @robot-toolbox/mp-upload
 
 - options
   1. bScript构建的script指令，默认值 build

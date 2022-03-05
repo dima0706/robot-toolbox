@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const minimist = require('minimist');
-const { error } = require('@dima-toolbox/logger');
+const { error } = require('@robot-toolbox/logger');
 
 main();
 
@@ -23,7 +23,7 @@ function getPlugin(pluginName: pluginName): Function {
     process.exit(1);
   }
   try {
-    return require(`@dima-toolbox/${pluginName}`);
+    return require(`@robot-toolbox/${pluginName}`);
   } catch (err: any) {
     error(err.message);
     process.exit(1);

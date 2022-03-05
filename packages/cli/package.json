@@ -1,9 +1,9 @@
 {
-  "name": "@dima-toolbox/cli",
-  "version": "0.0.3-alpha.0",
+  "name": "@robot-toolbox/cli",
+  "version": "0.0.0-alpha.0",
   "main": "index.js",
   "bin": {
-    "dima-toolbox": "./index.js"
+    "robot-toolbox": "./index.js"
   },
   "license": "MIT",
   "publishConfig": {
@@ -13,7 +13,7 @@
     "minimist": "^1.2.5"
   },
   "peerDependencies": {
-    "@dima-toolbox/logger": "^0.0.3-alpha.0",
+    "@robot-toolbox/logger": "^0.0.1-alpha.0",
     "shelljs": "^0.8.5",
     "inquirer": "^8.2.0",
     "os": "^0.1.2"
