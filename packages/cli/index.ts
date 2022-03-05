@@ -24,8 +24,8 @@ function getPlugin(pluginName: pluginName): Function {
   }
   try {
     return require(`@dima-toolbox/${pluginName}`);
-  } catch (err) {
-    error(`插件不存在，请执行命令【 yarn [global] add @dima-toolbox/${pluginName} 】安装插件`);
+  } catch (err: any) {
+    error(err.message);
     process.exit(1);
   }
 }
