@@ -1,6 +1,6 @@
 {
   "name": "@robot-toolbox/cli",
-  "version": "0.0.0-alpha.0",
+  "version": "0.0.1-alpha.0",
   "main": "index.js",
   "bin": {
     "robot-toolbox": "./index.js"
@@ -14,8 +14,8 @@
   },
   "peerDependencies": {
     "@robot-toolbox/logger": "^0.0.1-alpha.0",
-    "shelljs": "^0.8.5",
     "inquirer": "^8.2.0",
-    "os": "^0.1.2"
+    "os": "^0.1.2",
+    "shelljs": "^0.8.5"
   }
 }
