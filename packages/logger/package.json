@@ -1,9 +1,11 @@
 {
   "name": "@dima-toolbox/logger",
-  "version": "0.0.3-alpha.0",
+  "version": "0.0.0-alpha.0",
   "main": "index.js",
   "license": "MIT",
-  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "chalk": "^4.1.1"
   }
