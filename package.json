@@ -6,6 +6,9 @@
   "author": "dimaUpp <564074944@qq.com>",
   "license": "MIT",
   "private": false,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "dev": "tsc -w",
     "release": "tsc && lerna publish",
