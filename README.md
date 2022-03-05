@@ -1,4 +1,4 @@
-# dima-tool-cli
+# dima-toolbox
 
 ### TODO
 - [x] mp-upload
