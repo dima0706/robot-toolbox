@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "tsc -w",
+    "dev": "tsc -w",
     "release": "tsc && lerna publish",
     "lint-staged": "lint-staged"
   },
