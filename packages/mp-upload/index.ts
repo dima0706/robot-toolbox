@@ -1,8 +1,8 @@
-const { join, normalize } = require('path');
-const { existsSync, readFileSync, writeFileSync } = require('fs');
+import { join, normalize } from 'path';
+import { existsSync, readFileSync } from 'fs';
+import shelljs from 'shelljs';
+import inquirer from 'inquirer';
 const { platform, homedir } = require('os');
-const inquirer = require('inquirer');
-const shelljs = require('shelljs');
 
 export = async function mpUpload(params: MpUploadOptions) {
   const { bScript = 'build', distUrl = 'dist' } = params;

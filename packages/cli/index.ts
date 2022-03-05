@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const minimist = require('minimist');
+import minimist from 'minimist';
 const { error } = require('@robot-toolbox/logger');
 
 main();
@@ -19,10 +19,10 @@ function main() {
 }
 
 function getPlugin(pluginName: pluginName): Function {
-  if (!pluginName) {
-    process.exit(1);
-  }
   try {
+    if (!pluginName) {
+      throw new Error('请调用指定的工具包');
+    }
     return require(`@robot-toolbox/${pluginName}`);
   } catch (err: any) {
     error(err.message);

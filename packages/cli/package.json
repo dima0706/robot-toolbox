@@ -9,13 +9,16 @@
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": {
-    "minimist": "^1.2.5"
-  },
-  "peerDependencies": {
+  "dependencies": {
     "@robot-toolbox/logger": "^0.0.1-alpha.0",
+    "shelljs": "^0.8.5",
     "inquirer": "^8.2.0",
-    "os": "^0.1.2",
-    "shelljs": "^0.8.5"
-  }
+    "os": "^0.1.2"
+  },
+  "devDependencies": {
+    "minimist": "^1.2.2",
+    "@types/shelljs": "^0.8.5",
+    "@types/inquirer": "^8.2.0"
+  },
+  "peerDependencies": {}
 }
