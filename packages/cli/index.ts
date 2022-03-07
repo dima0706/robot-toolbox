@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import minimist from 'minimist';
-const { error } = require('@robot-toolbox/logger');
+import { error } from '@robot-toolbox/logger';
 
 main();
 
-function main() {
+async function main() {
   const argv = minimist(process.argv.slice(2));
   const pluginName: pluginName = argv._[0];
   const plugin = getPlugin(pluginName);
@@ -15,7 +15,12 @@ function main() {
       optionInfo[argKey] = argv[argKey];
     }
   });
-  plugin({ ...optionInfo, pluginName });
+  try {
+    await plugin({ ...optionInfo, pluginName });
+  } catch (err: any) {
+    error(err.message);
+    process.exit(1);
+  }
 }
 
 function getPlugin(pluginName: pluginName): Function {
