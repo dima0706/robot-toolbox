@@ -2,6 +2,8 @@ import { error } from '@robot-toolbox/logger';
 import inquirer from 'inquirer';
 import fetch from 'node-fetch';
 import ora from 'ora';
+import { join, extname } from 'path';
+import { existsSync, writeFile } from 'fs';
 
 export = async function iconfont(params: IconfontOptions): Promise<any> {
   const spinner = ora();
@@ -23,29 +25,47 @@ export = async function iconfont(params: IconfontOptions): Promise<any> {
 
   spinner.start('下载中...');
 
-  const cssCode = await downloadFn(downloadUrl);
+  const { filename: cssFileName, code: cssCode } = await downloadFn(downloadUrl);
 
-  const promises: Promise<string>[] = [];
+  const promises: Promise<FileInfo>[] = [];
   const urlCodeArr = cssCode.match(/url\([^\)]+\)/gm);
   if (urlCodeArr) {
-    urlCodeArr.forEach((codeStr: string) => {
-      promises.push(downloadFn(codeStr.slice(5, -2)));
+    urlCodeArr.forEach((url: string) => {
+      promises.push(downloadFn(url.slice(5, -2)));
     });
   }
   const codeArr = await Promise.all(promises);
 
-  spinner.succeed('下载完成');
+  spinner.succeed();
 
-  console.log(dir);
-  console.log(codeArr.length);
+  const dirUrl = join(process.cwd(), dir);
+  if (!existsSync(dirUrl)) {
+    error(`目录不存在：${dirUrl}`);
+  }
+
+  spinner.start('生成文件替换中...');
+  const writePromises: Promise<void>[] = [];
+  [{ filename: cssFileName, code: cssCode }, ...codeArr].forEach(({ filename, code }) => {
+    writePromises.push(
+      new Promise((resolve, reject) => {
+        writeFile(`${dirUrl}/${filename}`, code, { encoding: 'utf8' }, (err) => (err ? reject(err) : resolve()));
+      })
+    );
+  });
+  await Promise.all(writePromises);
+  spinner.succeed();
 };
 
-async function downloadFn(url: string): Promise<string> {
+async function downloadFn(url: string): Promise<FileInfo> {
   const file = await fetch(`https:${url}`);
-  const fileStr = await file.text();
-  return fileStr;
+  const code = await file.text();
+  return { filename: `iconfont${extname(url.replace(/\?.*$/, ''))}`, code };
 }
-
 interface IconfontOptions extends Options {
   dir: string;
+}
+
+interface FileInfo {
+  filename: string;
+  code: string;
 }
