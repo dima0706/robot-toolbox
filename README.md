@@ -6,7 +6,7 @@
 
 ## plugin - TODO
 - [x] mp-upload
-- [ ] iconfont
+- [x] iconfont
 - [ ] oss-upload
 - [ ] app-creater
 
@@ -27,3 +27,11 @@ yarn global add @robot-toolbox/cli
 - TODO  
   - [ ] 自定义version的校验
   - [ ] 读取项目package.json的version及修改version【git】
+
+## iconfont
+- 安装  
+  `yarn global add @robot-toolbox/iconfont`
+
+- options
+  1. 【required】dir 相对于当前终端存放iconfont文件夹路径
+  2. name，css文件名 默认值 iconfont.css

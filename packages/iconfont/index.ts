@@ -7,15 +7,14 @@ import { existsSync, writeFile } from 'fs';
 
 export = async function iconfont(params: IconfontOptions): Promise<any> {
   const spinner = ora();
-  const { dir } = params;
+  const { dir, name: defaultCssName } = params;
 
-  // const { downloadUrl } = await inquirer.prompt<{ downloadUrl: string }>({
-  //   type: 'input',
-  //   name: 'downloadUrl',
-  //   message: '请输入iconfont线上地址【Font class代码】',
-  //   validate: (val: string) => !!val
-  // });
-  const downloadUrl = '//at.alicdn.com/t/font_2647670_992j4owiywp.css';
+  const { downloadUrl } = await inquirer.prompt<{ downloadUrl: string }>({
+    type: 'input',
+    name: 'downloadUrl',
+    message: '请输入iconfont线上地址【Font class代码】',
+    validate: (val: string) => !!val
+  });
 
   const checkReg = /font_\d+_.+\.css/;
   if (!checkReg.test(downloadUrl)) {
@@ -25,10 +24,11 @@ export = async function iconfont(params: IconfontOptions): Promise<any> {
 
   spinner.start('下载中...');
 
-  const { filename: cssFileName, code: cssCode } = await downloadFn(downloadUrl);
+  let { filename: cssFileName, code: cssCode } = await downloadFn(downloadUrl, defaultCssName);
 
   const promises: Promise<FileInfo>[] = [];
-  const urlCodeArr = cssCode.match(/url\([^\)]+\)/gm);
+  const urlCodeArr = cssCode.match(/url\(\'.*?\'\)/g);
+  cssCode = cssCode.replace(/url\(.*?\.(woff2|woff|ttf)/g, `url('iconfont.$1`);
   if (urlCodeArr) {
     urlCodeArr.forEach((url: string) => {
       promises.push(downloadFn(url.slice(5, -2)));
@@ -41,6 +41,7 @@ export = async function iconfont(params: IconfontOptions): Promise<any> {
   const dirUrl = join(process.cwd(), dir);
   if (!existsSync(dirUrl)) {
     error(`目录不存在：${dirUrl}`);
+    process.exit();
   }
 
   spinner.start('生成文件替换中...');
@@ -52,17 +53,20 @@ export = async function iconfont(params: IconfontOptions): Promise<any> {
       })
     );
   });
+
   await Promise.all(writePromises);
+
   spinner.succeed();
 };
 
-async function downloadFn(url: string): Promise<FileInfo> {
+async function downloadFn(url: string, customName?: string): Promise<FileInfo> {
   const file = await fetch(`https:${url}`);
   const code = await file.text();
-  return { filename: `iconfont${extname(url.replace(/\?.*$/, ''))}`, code };
+  return { filename: customName || `iconfont${extname(url.replace(/\?.*$/, ''))}`, code };
 }
 interface IconfontOptions extends Options {
   dir: string;
+  name?: string;
 }
 
 interface FileInfo {
