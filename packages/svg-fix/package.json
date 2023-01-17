@@ -1,0 +1,9 @@
+{
+  "name": "@robot-toolbox/svg-ifx",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

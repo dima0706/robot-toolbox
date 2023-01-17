@@ -7,6 +7,7 @@
 ## plugin - TODO
 - [x] mp-upload
 - [x] iconfont
+- [x] svg-ifx
 - [ ] oss-upload
 - [ ] app-creater
 
@@ -35,3 +36,10 @@ yarn global add @robot-toolbox/cli
 - options
   1. 【required】dir 相对于当前终端存放iconfont文件夹路径
   2. name，css文件名 默认值 iconfont.css
+
+## svg-fix
+- 安装  
+  `yarn global add @robot-toolbox/svg-fix`
+
+- options
+  1. url 基于当前终端目录下svg所处的路径，不指定通过终端输入。
